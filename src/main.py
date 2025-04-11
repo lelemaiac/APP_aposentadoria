@@ -165,8 +165,10 @@ def main(page: ft.Page):
             idade = input_idade.value
             contribuicao = input_contribuicao.value
             salario = input_salarial.value
-            teste = not idade.isnumeric()
-            print("idade: ",teste)
+            # teste = not idade.isnumeric()
+            # print("idade: ",teste)
+
+
             if not idade.isnumeric():
                 input_idade.error = True
                 input_idade.error_text = "Preencha este campo com números inteiros"
