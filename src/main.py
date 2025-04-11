@@ -1,3 +1,4 @@
+
 import flet as ft
 from flet import AppBar, Text, ElevatedButton, View, Margin, Dropdown
 from flet.core.colors import  Colors
@@ -161,19 +162,38 @@ def main(page: ft.Page):
 
     def calcular(e):
         try:
-            if not input_idade.value:
+            idade = input_idade.value
+            contribuicao = input_contribuicao.value
+            salario = input_salarial.value
+            teste = not idade.isnumeric()
+            print("idade: ",teste)
+            if not idade.isnumeric():
                 input_idade.error = True
-                input_idade.error_text = "Preencha esse campo"
+                input_idade.error_text = "Preencha este campo com números inteiros"
                 page.update()
-
-            if not input_salarial.value:
-                input_salarial.error = True
-                input_salarial.error_text = "Preencha esse campo"
-                page.update()
-
-            if not input_contribuicao.value:
+            if not contribuicao.isnumeric():
                 input_contribuicao.error = True
-                input_contribuicao.error_text = "Preencha esse campo"
+                input_contribuicao.error_text = "Preencha este campo com números inteiros"
+                page.update()
+            if not salario.isnumeric():
+                input_salarial.error = True
+                input_salarial.error_text = "Preencha este campo com números inteiros"
+                page.update()
+
+
+            if not idade:
+                idade.error = True
+                idade.error_text = "Preencha esse campo"
+                page.update()
+
+            if not salario:
+                salario.error = True
+                salario.error_text = "Preencha esse campo"
+                page.update()
+
+            if not contribuicao:
+                contribuicao.error = True
+                contribuicao.error_text = "Preencha esse campo"
                 page.update()
 
             if not genero.value:
@@ -186,7 +206,7 @@ def main(page: ft.Page):
                 categoria.error_text = "Preencha esse campo"
                 page.update()
 
-            valor_idade = int(input_idade.value)
+            valor_idade = input_idade.value
             valor_contribuicao = int(input_contribuicao.value)
             valor_salario = int(input_salarial.value)
             resultado_conta = conta(e)
@@ -248,10 +268,15 @@ def main(page: ft.Page):
                     txt_data.value = f'A data estimada é {data_prevista}'
                     txt_valor.value = f'O valor estimado é R$ {resultado_conta}'
             page.go("/resultado")
+            page.update()
+
         except Exception as e:
-            txt_resultado.value = "Os valores estão incorretos, tente novamente, lembrando que tem que ser números inteiros."
+            txt_resultado.value = str(e)
+                #"Os valores estão incorretos, tente novamente, lembrando que tem que ser números inteiros."
+            page.update()
         except TypeError:
-            txt_resultado.value = "hhhhhhhh"
+            txt_resultado.value = "Idade, tempo de contribuição e salário deve ser números inteiros."
+            page.update()
 
 
 
