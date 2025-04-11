@@ -206,7 +206,7 @@ def main(page: ft.Page):
                 categoria.error_text = "Preencha esse campo"
                 page.update()
 
-            valor_idade = input_idade.value
+            valor_idade = int(input_idade.value)
             valor_contribuicao = int(input_contribuicao.value)
             valor_salario = int(input_salarial.value)
             resultado_conta = conta(e)
